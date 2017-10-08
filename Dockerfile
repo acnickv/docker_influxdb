@@ -12,19 +12,16 @@ COPY docker-entrypoint.sh /
 RUN tar xzf /influxdb-1.3.2_linux_armhf.tar.gz -C / && \
     mv influxdb-1.3.2-1 influxdb && \
     mv /influxdb.conf /influxdb/ && \
-    mkdir -p /influxdb/data && \
-    mkdir -p /influxdb/meta && \
-    mkdir -p /influxdb/wal && \
+    mkdir -p /data && \
     adduser -u 900 -D -S influxdb && \
     chown -R influxdb: /influxdb && \
+    chown -R influxdb: /data && \
     chown -R influxdb: /docker-entrypoint.sh && \
     chmod 0500 /docker-entrypoint.sh
 
 EXPOSE 8086
 
-VOLUME /influxdb/data
-VOLUME /influxdb/meta
-VOLUME /influxdb/wal
+VOLUME /data
 
 WORKDIR /influxdb
 
@@ -33,4 +30,3 @@ USER influxdb
 ENTRYPOINT ["/docker-entrypoint.sh"]
 # ENTRYPOINT ["/influxdb/usr/bin/influxd"]
 # CMD ["run","-config","/influxdb/influxdb.conf","-pidfile","/var/run/influxdb.pid"]
-
