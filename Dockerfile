@@ -14,8 +14,7 @@ RUN tar xzf /influxdb-1.3.2_linux_armhf.tar.gz -C / && \
     mv /influxdb.conf /influxdb/ && \
     mkdir -p /data && \
     adduser -u 900 -D -S influxdb && \
-    chown -R influxdb: /influxdb && \
-    chown -R influxdb: /data && \
+    chown -R influxdb: /influxdb /data && \
     chown -R influxdb: /docker-entrypoint.sh && \
     chmod 0500 /docker-entrypoint.sh
 
