@@ -9,7 +9,7 @@ COPY influxdb.conf /
 COPY docker-entrypoint.sh /
 
 RUN cd / && \
-    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.8.2_linux_armhf.tar.gz && \
+    curl -O https://dl.influxdata.com/influxdb/releases/influxdb-1.8.2_linux_armhf.tar.gz && \
     tar xzf /influxdb-1.8.2_linux_armhf.tar.gz -C / && \
     mv influxdb-1.8.2-1 influxdb && \
     mv /influxdb.conf /influxdb/ && \
